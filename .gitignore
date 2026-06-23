@@ -1,0 +1,35 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# next.js
+/.next/
+/out/
+/build
+next-env.d.ts
+
+# env files (never commit secrets) — keep .env.example
+.env
+.env.*
+!.env.example
+
+# vercel
+.vercel
+
+# supabase
+/supabase/.temp
+/supabase/.branches
+
+# logs / os / editor
+npm-debug.log*
+yarn-error.log*
+.DS_Store
+*.pem
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# misc
+*.tsbuildinfo
+coverage/
