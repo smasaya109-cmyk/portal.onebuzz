@@ -1,0 +1,29 @@
+{
+  "site": {
+    "title": "onebuzz 门户",
+    "description": "汇集诊断、健身、健康类应用的门户网站"
+  },
+  "home": {
+    "heroTitle": "找到适合你的应用",
+    "heroSubtitle": "汇集诊断、健身与健康类应用",
+    "featured": "精选应用",
+    "allApps": "全部应用",
+    "searchPlaceholder": "按名称或说明搜索",
+    "categoryAll": "全部",
+    "noResults": "未找到匹配的应用",
+    "visit": "打开应用",
+    "empty": "尚未登记任何应用"
+  },
+  "appDetail": {
+    "back": "返回列表",
+    "visit": "打开应用",
+    "category": "分类",
+    "tags": "标签",
+    "notFound": "未找到应用"
+  },
+  "locale": {
+    "ja": "日本語",
+    "en": "English",
+    "zh": "中文"
+  }
+}

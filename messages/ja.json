@@ -1,0 +1,29 @@
+{
+  "site": {
+    "title": "onebuzz ポータル",
+    "description": "診断・フィットネス・健康のアプリをまとめて紹介するポータル"
+  },
+  "home": {
+    "heroTitle": "あなたに合うアプリを見つけよう",
+    "heroSubtitle": "診断・フィットネス・健康のアプリを集めました",
+    "featured": "注目のアプリ",
+    "allApps": "すべてのアプリ",
+    "searchPlaceholder": "アプリ名・説明で検索",
+    "categoryAll": "すべて",
+    "noResults": "該当するアプリが見つかりませんでした",
+    "visit": "アプリを開く",
+    "empty": "アプリはまだ登録されていません"
+  },
+  "appDetail": {
+    "back": "一覧へ戻る",
+    "visit": "アプリを開く",
+    "category": "カテゴリ",
+    "tags": "タグ",
+    "notFound": "アプリが見つかりませんでした"
+  },
+  "locale": {
+    "ja": "日本語",
+    "en": "English",
+    "zh": "中文"
+  }
+}

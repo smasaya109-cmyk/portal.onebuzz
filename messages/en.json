@@ -1,0 +1,29 @@
+{
+  "site": {
+    "title": "onebuzz Portal",
+    "description": "A portal introducing diagnosis, fitness, and health apps"
+  },
+  "home": {
+    "heroTitle": "Find the app that fits you",
+    "heroSubtitle": "A collection of diagnosis, fitness, and health apps",
+    "featured": "Featured apps",
+    "allApps": "All apps",
+    "searchPlaceholder": "Search by name or description",
+    "categoryAll": "All",
+    "noResults": "No matching apps found",
+    "visit": "Open app",
+    "empty": "No apps have been registered yet"
+  },
+  "appDetail": {
+    "back": "Back to list",
+    "visit": "Open app",
+    "category": "Category",
+    "tags": "Tags",
+    "notFound": "App not found"
+  },
+  "locale": {
+    "ja": "日本語",
+    "en": "English",
+    "zh": "中文"
+  }
+}
