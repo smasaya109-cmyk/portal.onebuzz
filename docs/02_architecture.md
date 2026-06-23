@@ -34,7 +34,7 @@
 | フレームワーク | **Next.js (App Router)** | SSG/ISR でポータルに最適。Vercel と相性が最良。SEO・画像最適化・i18n が標準。 |
 | UI | **Tailwind CSS + shadcn/ui** | 高速にきれいなUIを構築。デザインの一貫性を保ちやすい。 |
 | DB | **Supabase (Postgres)** | マネージドPostgres + 管理UI(Studio)。認証画面を作らなくても Studio から運用追加できる。 |
-| メール | **Resend** | シンプルなAPI。問い合わせ通知に十分。 |
+| メール | **Resend**(現状未使用) | 問い合わせフォームを入れない方針のため現状用途なし。将来必要になった場合の候補として保持。 |
 | ホスティング | **Vercel** | GitHub 連携で push 自動デプロイ。プレビュー環境が自動生成。 |
 
 ## 2.5 middleware(aff_click_id 引き継ぎ)
@@ -58,9 +58,11 @@
 
 ## 5. 多言語(i18n)方針
 
-- Next.js App Router の `[locale]` セグメント方式(`/ja/...`, `/en/...`)を採用予定。
-- ライブラリ候補: `next-intl`(App Router 対応・型安全)。
-- DB 側はカラムを `name_ja` / `name_en` のように言語別に持つ(シンプル運用)。将来言語が増える場合は翻訳テーブル分離を検討。
+- 対応言語: **ja / en / zh**(3言語)。
+- Next.js App Router の `[locale]` セグメント方式(`/ja/...`, `/en/...`, `/zh/...`)を採用。
+- ライブラリ: `next-intl`(App Router 対応・型安全)。
+- UI 文言は `messages/{ja,en,zh}.json`。
+- DB は言語別カラム(`name_ja` / `name_en` / `name_zh` 等)で持つ。3言語は固定運用のためカラム分割で十分。さらに言語が増える場合は翻訳テーブル分離へ移行(→ [05_database.md](05_database.md))。
 
 ## 6. ディレクトリ構成(実装時の案)
 

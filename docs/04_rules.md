@@ -37,8 +37,8 @@
 | `NEXT_PUBLIC_SUPABASE_URL` | 公開可 | Vercel + .env.local |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | 公開可 | Vercel + .env.local |
 | `SUPABASE_SERVICE_ROLE_KEY` | **非公開** | Vercel(本番のみ)+ ローカルのみ |
-| `RESEND_API_KEY` | **非公開** | Vercel + .env.local |
-| `CONTACT_TO_EMAIL` | 設定値 | Vercel + .env.local |
+| `NEXT_PUBLIC_AFF_COOKIE_DOMAIN` | 公開可 | Vercel + .env.local(`.onebuzz.net`) |
+| `RESEND_API_KEY` | **非公開**(現状未使用) | 必要になったら設定 |
 
 - 変数を追加したら `.env.example`(値は空)にも追記し、チームで共有できるようにする。
 - 本番・プレビュー・開発で値を分ける(特に Supabase プロジェクト)。
