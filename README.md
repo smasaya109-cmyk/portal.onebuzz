@@ -3,21 +3,21 @@
 `portal.onebuzz.net` で動く、一般ユーザー向けのアプリ紹介ポータル(カタログ / LP)。
 各アプリ(`*.onebuzz.net` のサブドメイン)へ送客する。**独立リポ・独立 Vercel プロジェクト**で構築する。
 
-> **現在のフェーズ: 仕様確定済み → 実装準備**
-> 主要な方針・仕様・要件は docs/ で確定。次は Next.js scaffold から実装に入る。
+> **現在のフェーズ: 初期実装完了 → アプリ登録待ち**
+> Next.js 実装・Vercel/Supabase 接続まで完了。サイトは稼働可能で、あとは `apps` を登録していく段階。
+> **次回チャットはまず [docs/07_status.md](docs/07_status.md)(実装状況・引き継ぎ)を読む。**
 
 ## ドキュメント一覧
-
-実装前に、以下の順で内容を確認・合意してから着手する。
 
 | # | ファイル | 内容 |
 |---|---|---|
 | 1 | [docs/01_requirements.md](docs/01_requirements.md) | 要件定義(何を作るか・スコープ) |
 | 2 | [docs/02_architecture.md](docs/02_architecture.md) | 技術構成・アーキテクチャ方針 |
-| 3 | [docs/03_security.md](docs/03_security.md) | セキュリティ方針(実装前に必読) |
+| 3 | [docs/03_security.md](docs/03_security.md) | セキュリティ方針(必読) |
 | 4 | [docs/04_rules.md](docs/04_rules.md) | 開発・運用ルール |
 | 5 | [docs/05_database.md](docs/05_database.md) | Supabase スキーマ設計 |
 | 6 | [docs/06_affiliate_clickid.md](docs/06_affiliate_clickid.md) | ★唯一の必須要件: aff_click_id Cookie 引き継ぎ |
+| 7 | [docs/07_status.md](docs/07_status.md) | **実装状況・引き継ぎ(次回チャットはここから)** |
 
 ## 確定済みの方針
 
