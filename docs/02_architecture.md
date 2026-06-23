@@ -5,21 +5,26 @@
 ## 1. 全体構成
 
 ```
-[閲覧者ブラウザ]
+[パートナー流入: portal.onebuzz.net/?aff_click_id=XXX]
       │  HTTPS
       ▼
 [Vercel] ── Next.js (App Router / TypeScript)
-      │           │
-      │           ├─ ビルド時/ISR: Supabase から公開アプリを取得して静的生成
-      │           └─ 問い合わせ等のサーバー処理(Route Handler)
+      │   ├─ ★ middleware: ?aff_click_id を Cookie(.onebuzz.net)に保存 ← 核心
+      │   ├─ ビルド時/ISR: Supabase から公開アプリを取得して静的生成
+      │   └─ 問い合わせ等のサーバー処理(Route Handler)
       ▼
 [Supabase (Postgres)] ── アプリデータ。RLS で「公開データの読み取りのみ」許可
+      │   └─ Storage(画像を置く場合)
       │
-      └─ Storage(画像を置く場合)
+      ▼ 送客(普通のリンク。Cookieは親ドメイン共有済み)
+[*.onebuzz.net アプリ群] ── Cookie の aff_click_id を読む(SDKはアプリ側)
 
 [Resend] ── 問い合わせ通知メール(サーバー側からのみ呼び出し)
 [GitHub] ── ソース管理。push → Vercel 自動デプロイ
 ```
+
+> ポータルとアプリ群は **同一親ドメイン `onebuzz.net` のサブドメイン**である必要がある(Cookie 共有の前提)。
+> このサイトは ASPリポ `onebuzz` とは別の **独立リポ・独立 Vercel プロジェクト**。
 
 ## 2. 技術選定と理由
 
@@ -31,6 +36,12 @@
 | DB | **Supabase (Postgres)** | マネージドPostgres + 管理UI(Studio)。認証画面を作らなくても Studio から運用追加できる。 |
 | メール | **Resend** | シンプルなAPI。問い合わせ通知に十分。 |
 | ホスティング | **Vercel** | GitHub 連携で push 自動デプロイ。プレビュー環境が自動生成。 |
+
+## 2.5 middleware(aff_click_id 引き継ぎ)
+
+- `middleware.ts` で全リクエスト(`matcher: "/:path*"`)を通し、`?aff_click_id` があれば親ドメイン Cookie に上書き保存(ラストクリック)。
+- Cookie 仕様・実装コード・テスト観点は [06_affiliate_clickid.md](06_affiliate_clickid.md)(★確定仕様)を正とする。
+- middleware は Cookie をセットするだけで、値の加工・外部送信は行わない。
 
 ## 3. レンダリング戦略
 

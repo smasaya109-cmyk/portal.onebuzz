@@ -48,6 +48,17 @@
 - アプリの外部URLへのリンクは `rel="noopener noreferrer"` を付与。
 - DB に入る URL は信頼できる管理者が登録する前提だが、表示時に `http(s)` スキームのみ許可(`javascript:` 等を弾く)。
 
+## 5.5 aff_click_id Cookie の扱い
+
+- `aff_click_id` は秘密情報ではない(指示書明記)。最終的な成果帰属はアプリ側のサーバ署名で担保される。よって `HttpOnly: false`(JS から読めてよい)。
+- それでも以下は守る:
+  - Cookie に入れるのは受け取った `aff_click_id` の値**のみ**。他の用途で加工・外部送信しない。
+  - `Secure` を本番で必須化(`process.env.NODE_ENV === "production"`)。HTTP では送らない。
+  - `SameSite: Lax` 固定(指示書準拠)。
+  - `Domain` は `.onebuzz.net` 固定。任意ドメインを動的に受け付けない(Cookie 注入防止)。
+  - 値は最大長などの常識的な範囲でそのまま保存(`?aff_click_id` をそのまま流すだけ。SQL等に使わない)。
+- 詳細仕様は [06_affiliate_clickid.md](06_affiliate_clickid.md)。
+
 ## 6. HTTP セキュリティヘッダ
 
 `next.config` または Vercel でレスポンスヘッダを設定:
@@ -89,3 +100,4 @@
 - [ ] Resend 呼び出しはサーバー側のみ
 - [ ] セキュリティヘッダを設定
 - [ ] `next/image` の許可ドメインを限定
+- [ ] aff_click_id Cookie: Domain=`.onebuzz.net` 固定 / 本番 Secure / 値を加工・送信しない
