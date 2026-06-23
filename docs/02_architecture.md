@@ -58,7 +58,7 @@
 
 ## 5. 多言語(i18n)方針
 
-- 対応言語: **ja / en / zh**(3言語)。
+- 対応言語: **ja / en / zh**(3言語)。中国語は **簡体字(zh-CN)**。
 - Next.js App Router の `[locale]` セグメント方式(`/ja/...`, `/en/...`, `/zh/...`)を採用。
 - ライブラリ: `next-intl`(App Router 対応・型安全)。
 - UI 文言は `messages/{ja,en,zh}.json`。

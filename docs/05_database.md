@@ -55,6 +55,13 @@
 - `app_tags`: app_id (FK→apps), tag_id (FK→tags), PK は (app_id, tag_id) — 多対多
 - カテゴリは1アプリ1つ、タグは複数付与できる運用。
 
+**初期タグ(将来増加):**
+| slug | name_ja | name_en | name_zh |
+|---|---|---|---|
+| stress | ストレス | Stress | 压力 |
+| sleep | 睡眠 | Sleep | 睡眠 |
+| diet | ダイエット | Diet | 减肥 |
+
 ## 3. RLS ポリシー(案)
 
 ```sql
@@ -96,8 +103,9 @@ create policy "public read app_tags"   on app_tags   for select to anon using (t
 - ✅ 画像: 外部URL(`*.onebuzz.net`)
 - ✅ 多言語: ja / en / zh のカラム分割
 
-## 8. 未決事項
+## 8. 確定事項(追加)
 
-- [ ] 「注目アプリ(is_featured)」枠を設けるか
-- [ ] 中国語は簡体字(zh-CN)でよいか
-- [ ] 初期タグの具体リスト(カテゴリ確定後に詰める)
+- ✅ `is_featured` 枠を使う(トップ掲出)
+- ✅ 中国語は簡体字(zh-CN)
+- ✅ 初期タグ: stress / sleep / diet
+- ✅ 検索は `name_*` / `description_*` に対するキーワード検索(MVP)。実装は ILIKE もしくは Postgres 全文検索を後で選定。
