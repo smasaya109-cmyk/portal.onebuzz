@@ -22,12 +22,29 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "site" });
+  const title = t("title");
+  const description = t("description");
+  const ogLocale = { ja: "ja_JP", en: "en_US", zh: "zh_CN" }[locale] ?? "ja_JP";
   return {
-    title: t("title"),
-    description: t("description"),
+    title,
+    description,
     metadataBase: process.env.NEXT_PUBLIC_SITE_URL
       ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
       : undefined,
+    applicationName: "onebuzz",
+    appleWebApp: { capable: true, title: "onebuzz", statusBarStyle: "black-translucent" },
+    openGraph: {
+      type: "website",
+      siteName: title,
+      title,
+      description,
+      locale: ogLocale,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
