@@ -20,7 +20,8 @@
 | フレームワーク | Next.js 16(App Router, Turbopack)+ TypeScript + Tailwind 4 |
 | ★click_id 引き継ぎ | `middleware.ts` 実装・実機検証済(Cookie 属性が仕様と一致) |
 | 多言語 | next-intl で ja / en / zh(簡体字)。`/ja` `/en` `/zh` |
-| ページ | トップ(注目枠 + カテゴリ絞り込み + 検索 + 一覧)/ アプリ詳細 |
+| ページ | トップ(注目枠 + カテゴリ絞り込み + 検索 + 一覧)/ アプリ詳細 / アフィリエイター募集(`/affiliate`) |
+| アフィリエイター募集 | 全ページ共通フッターから導線 → `/affiliate`(3言語のシンプルな案内 LP)。CTA は外部 ASP 登録 URL(`NEXT_PUBLIC_AFFILIATE_SIGNUP_URL`)へ遷移。フォーム・DB なし |
 | データ層 | Supabase(anon 読み取り、env 未設定でも空状態でビルド可) |
 | DB | スキーマ + RLS + seed 投入済(categories 3件 / tags 3件 / apps 0件) |
 | セキュリティ | RLS で anon 書き込み拒否を確認(401)/ 画像ドメイン限定 / セキュリティヘッダ |
@@ -61,6 +62,7 @@ supabase/migrations/0001_init.sql  スキーマ+RLS+seed
 | `SUPABASE_SERVICE_ROLE_KEY` | 現状アプリ未使用(ローカルのみ保持) | ★公開厳禁 |
 | `NEXT_PUBLIC_SITE_URL` | metadata 等 | ローカル=localhost / 本番=https://portal.onebuzz.net |
 | `NEXT_PUBLIC_AFF_COOKIE_DOMAIN` | 参考用 | 実際の Cookie ドメインは middleware 内で `.onebuzz.net` 固定 |
+| `NEXT_PUBLIC_AFFILIATE_SIGNUP_URL` | `/affiliate` の応募ボタン遷移先 | 未設定だと `#`(リンク無効)。Vercel と `.env.local` に外部 ASP の登録 URL を設定 |
 
 - Supabase プロジェクトは作成済み・スキーマ適用済み。
 - ローカル開発は `.env.local` に値あり(Git 管理外)。

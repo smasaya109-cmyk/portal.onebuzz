@@ -21,6 +21,24 @@
     "tags": "Tags",
     "notFound": "App not found"
   },
+  "affiliate": {
+    "title": "Become an Affiliate",
+    "subtitle": "Promote onebuzz apps and earn performance-based rewards.",
+    "intro": "onebuzz is looking for affiliates to introduce our diagnosis, fitness, and health apps. Joining is free — earn rewards based on the users you refer from your media or social channels.",
+    "point1Title": "Performance-based",
+    "point1Body": "You earn rewards for referrals that lead to sign-ups and usage.",
+    "point2Title": "Easy to promote",
+    "point2Body": "A lineup of free apps that resonate with a wide audience.",
+    "point3Title": "Start right away",
+    "point3Body": "Just register on our partner site and get your links instantly.",
+    "cta": "Apply now (partner site)",
+    "note": "Registration takes place on our external partner site.",
+    "back": "Back to home"
+  },
+  "footer": {
+    "affiliate": "Become an Affiliate",
+    "copyright": "© onebuzz"
+  },
   "locale": {
     "ja": "日本語",
     "en": "English",

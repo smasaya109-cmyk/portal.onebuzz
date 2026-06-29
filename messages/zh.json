@@ -21,6 +21,24 @@
     "tags": "标签",
     "notFound": "未找到应用"
   },
+  "affiliate": {
+    "title": "招募联盟伙伴",
+    "subtitle": "推广 onebuzz 应用,赚取成效报酬。",
+    "intro": "onebuzz 正在招募推广我们诊断、健身与健康类应用的联盟伙伴。加入免费,根据您从媒体或社交渠道带来的成效获得报酬。",
+    "point1Title": "按成效付费",
+    "point1Body": "带来注册与使用的推广才会产生报酬。",
+    "point2Title": "易于推广",
+    "point2Body": "拥有面向广泛受众的免费应用阵容。",
+    "point3Title": "即刻开始",
+    "point3Body": "只需在合作网站注册,即可立即获取专属链接。",
+    "cta": "立即申请(前往合作网站)",
+    "note": "注册将在外部合作网站完成。",
+    "back": "返回首页"
+  },
+  "footer": {
+    "affiliate": "招募联盟伙伴",
+    "copyright": "© onebuzz"
+  },
   "locale": {
     "ja": "日本語",
     "en": "English",
