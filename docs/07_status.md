@@ -1,6 +1,6 @@
 # 07. 実装状況・引き継ぎ(次回チャット用)
 
-> 最終更新: 2026-06-23
+> 最終更新: 2026-06-29
 > このファイルを最初に読めば現状を把握できる。詳細仕様は 01〜06 を参照。
 
 ## 1. 現在地(サマリー)
@@ -24,6 +24,7 @@
 | データ層 | Supabase(anon 読み取り、env 未設定でも空状態でビルド可) |
 | DB | スキーマ + RLS + seed 投入済(categories 3件 / tags 3件 / apps 0件) |
 | セキュリティ | RLS で anon 書き込み拒否を確認(401)/ 画像ドメイン限定 / セキュリティヘッダ |
+| アイコン/OGP | モノクロのブランドアイコン(`icon.svg`/`apple-icon`)・PWA マニフェスト・サイト共通 OGP/Twitter カード画像(1200x630)。openGraph/twitter メタはロケール別 |
 | 運用方針 | アプリ追加は当面 Claude Code 経由(管理画面なし)→ §6 |
 
 ## 3. 主要ファイルの地図
@@ -33,9 +34,14 @@ middleware.ts                      ★click_id Cookie + i18n 振り分け
 next.config.ts                     画像ドメイン制限 / セキュリティヘッダ / turbopack root
 src/i18n/{routing,request,navigation}.ts   多言語設定
 messages/{ja,en,zh}.json           UI 文言
-src/app/[locale]/layout.tsx        ロケール別ルート(html lang, metadata)
+src/app/[locale]/layout.tsx        ロケール別ルート(html lang, metadata, openGraph/twitter)
 src/app/[locale]/page.tsx          トップページ(ISR 5分)
-src/app/[locale]/apps/[slug]/page.tsx  詳細(ISR 5分, generateStaticParams)
+src/app/[locale]/apps/[slug]/page.tsx  詳細(ISR 5分, generateStaticParams, 個別OGP)
+src/app/icon.svg                   ファビコン(モノクロ「ob」)
+src/app/apple-icon.tsx             Apple タッチアイコン 180x180(ImageResponse)
+src/app/manifest.ts                PWA マニフェスト
+src/app/[locale]/opengraph-image.tsx  サイト共通 OGP 画像 1200x630
+src/app/[locale]/twitter-image.tsx    Twitter カード画像(OGP を流用)
 src/components/AppCard.tsx          カード
 src/components/AppsBrowser.tsx      検索+カテゴリ絞り込み(client)
 src/components/LanguageSwitcher.tsx 言語切替(client)
@@ -88,7 +94,8 @@ Claude が自動補完: `slug` 生成 / en・zh 翻訳 / カテゴリ・タグ I
 
 - [ ] サンプルアプリ1件を入れて本番表示の通し確認(一覧/詳細/注目枠/言語切替)
 - [ ] ヘッダー/フッター・デザインのトーン詰め(現状は無彩色ミニマル、緑/マスコットは不採用)
-- [ ] SEO 仕上げ(`sitemap.ts` / `robots.ts` / 各ページ OGP 画像)
+- [x] OGP 画像・アイコン・PWA マニフェスト(2026-06-29 完了)
+- [ ] SEO 仕上げの残り(`sitemap.ts` / `robots.ts`)
 - [ ] アプリが増えたら検索を Postgres 全文検索へ(現状はクライアント側フィルタ)
 - [ ] 即時反映が欲しくなったら Supabase Webhook → On-Demand Revalidation
 - [ ] `supabase gen types typescript` で型を自動生成に置換
