@@ -41,17 +41,35 @@ export function AppsBrowser({
 
   return (
     <section className="flex flex-col gap-6">
-      <h2 className="text-xl font-bold">{t("allApps")}</h2>
+      <div className="flex items-center gap-3">
+        <h2 className="text-xl font-bold tracking-tight sm:text-2xl">
+          {t("allApps")}
+        </h2>
+        <span className="h-px flex-1 bg-border" />
+      </div>
 
       <div className="flex flex-col gap-4">
-        <input
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder={t("searchPlaceholder")}
-          aria-label={t("searchPlaceholder")}
-          className="w-full rounded-xl border border-black/15 bg-white px-4 py-2.5 text-sm outline-none focus:border-black/40 dark:border-white/15 dark:bg-white/5"
-        />
+        <div className="relative">
+          <svg
+            aria-hidden
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"
+          >
+            <circle cx="9" cy="9" r="6" />
+            <path d="m17 17-3.5-3.5" strokeLinecap="round" />
+          </svg>
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={t("searchPlaceholder")}
+            aria-label={t("searchPlaceholder")}
+            className="w-full rounded-full border border-border bg-surface py-3 pl-11 pr-4 text-sm outline-none transition focus:border-accent focus:ring-4 focus:ring-[var(--accent-soft)]"
+          />
+        </div>
 
         <div className="flex flex-wrap gap-2">
           <FilterChip
@@ -71,11 +89,9 @@ export function AppsBrowser({
       </div>
 
       {filtered.length === 0 ? (
-        <p className="py-12 text-center text-sm text-black/50 dark:text-white/50">
-          {t("noResults")}
-        </p>
+        <p className="py-12 text-center text-sm text-muted">{t("noResults")}</p>
       ) : (
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((app) => (
             <AppCard key={app.id} app={app} locale={locale} />
           ))}
@@ -98,10 +114,10 @@ function FilterChip({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition ${
+      className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
         active
-          ? "bg-foreground text-background"
-          : "border border-black/15 text-black/70 hover:border-black/40 dark:border-white/15 dark:text-white/70"
+          ? "bg-foreground text-background shadow-sm"
+          : "border border-border bg-surface text-muted hover:border-accent hover:text-foreground"
       }`}
     >
       {label}

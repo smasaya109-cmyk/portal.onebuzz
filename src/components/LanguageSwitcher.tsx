@@ -51,7 +51,7 @@ export function LanguageSwitcher() {
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className="flex items-center gap-2 rounded-md border border-black/10 px-2.5 py-1.5 transition hover:bg-black/5 dark:border-white/15 dark:hover:bg-white/10"
+        className="flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 transition hover:border-accent"
       >
         <span aria-hidden className="text-base leading-none">
           {FLAGS[locale]}
@@ -60,7 +60,7 @@ export function LanguageSwitcher() {
         <svg
           aria-hidden
           viewBox="0 0 20 20"
-          className={`h-3.5 w-3.5 text-black/40 transition dark:text-white/40 ${
+          className={`h-3.5 w-3.5 text-muted transition ${
             open ? "rotate-180" : ""
           }`}
           fill="none"
@@ -74,7 +74,7 @@ export function LanguageSwitcher() {
       {open && (
         <ul
           role="listbox"
-          className="absolute right-0 z-20 mt-1 min-w-[9rem] overflow-hidden rounded-lg border border-black/10 bg-white py-1 shadow-lg dark:border-white/15 dark:bg-neutral-900"
+          className="absolute right-0 z-40 mt-2 min-w-[9rem] overflow-hidden rounded-xl border border-border bg-surface py-1 shadow-lg"
         >
           {routing.locales.map((l) => (
             <li key={l}>
@@ -83,8 +83,8 @@ export function LanguageSwitcher() {
                 role="option"
                 aria-selected={l === locale}
                 onClick={() => select(l)}
-                className={`flex w-full items-center gap-2 px-3 py-2 text-left transition hover:bg-black/5 dark:hover:bg-white/10 ${
-                  l === locale ? "font-semibold" : "text-black/70 dark:text-white/70"
+                className={`flex w-full items-center gap-2 px-3 py-2 text-left transition hover:bg-[var(--accent-soft)] ${
+                  l === locale ? "font-semibold text-accent-strong" : "text-muted"
                 }`}
               >
                 <span aria-hidden className="text-base leading-none">

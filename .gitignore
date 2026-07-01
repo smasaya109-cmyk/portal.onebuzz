@@ -17,6 +17,9 @@ next-env.d.ts
 # vercel
 .vercel
 
+# claude code (local harness config)
+.claude
+
 # supabase
 /supabase/.temp
 /supabase/.branches
