@@ -1,26 +1,67 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* base surfaces */
+  --background: #f7f7f9;
+  --foreground: #18181b;
+  --surface: #ffffff;
+  --muted: #71717a;
+  --border: rgba(24, 24, 27, 0.08);
+
+  /* brand accent (onebuzz) */
+  --accent: #6d5efc;
+  --accent-strong: #5847e0;
+  --accent-soft: rgba(109, 94, 252, 0.12);
+
+  --radius: 1rem;
+  --shadow-card: 0 1px 2px rgba(24, 24, 27, 0.04), 0 8px 24px -12px rgba(24, 24, 27, 0.12);
+  --shadow-card-hover: 0 2px 4px rgba(24, 24, 27, 0.06), 0 20px 40px -16px rgba(24, 24, 27, 0.22);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0a0a0c;
     --foreground: #ededed;
+    --surface: #141417;
+    --muted: #a1a1aa;
+    --border: rgba(255, 255, 255, 0.1);
+    --accent: #8b7bff;
+    --accent-strong: #6d5efc;
+    --accent-soft: rgba(139, 123, 255, 0.16);
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+    --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.4), 0 20px 40px -16px rgba(0, 0, 0, 0.7);
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+    "Noto Sans JP", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+/* soft ambient backdrop for the hero area */
+.bg-aurora {
+  background-image:
+    radial-gradient(40rem 40rem at 15% -10%, var(--accent-soft), transparent 60%),
+    radial-gradient(36rem 36rem at 95% 0%, rgba(109, 94, 252, 0.08), transparent 55%);
 }

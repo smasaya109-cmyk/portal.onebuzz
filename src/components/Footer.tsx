@@ -6,15 +6,20 @@ export async function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-black/10 dark:border-white/10">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-5 py-8 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-8">
-        <p className="text-black/50 dark:text-white/50">
-          {t("copyright")} {year}
-        </p>
+    <footer className="mt-auto border-t border-border bg-surface/50">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-5 py-10 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <div className="flex items-center gap-2.5">
+          <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br from-accent to-accent-strong text-[10px] font-bold text-white">
+            ob
+          </span>
+          <p className="text-muted">
+            {t("copyright")} {year}
+          </p>
+        </div>
         <nav>
           <Link
             href="/affiliate"
-            className="font-medium text-black/70 underline-offset-4 hover:underline dark:text-white/70"
+            className="font-medium text-muted underline-offset-4 transition hover:text-accent hover:underline"
           >
             {t("affiliate")}
           </Link>

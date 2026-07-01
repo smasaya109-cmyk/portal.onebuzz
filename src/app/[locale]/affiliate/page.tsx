@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { LINE_OFFICIAL_URL } from "@/lib/links";
 
 // 静的な案内ページ(データ取得なし)
 export function generateStaticParams() {
@@ -22,8 +23,8 @@ export async function generateMetadata({
   };
 }
 
-// 外部 ASP の登録ページ URL(Vercel / .env.local の NEXT_PUBLIC_AFFILIATE_SIGNUP_URL で設定)
-const SIGNUP_URL = process.env.NEXT_PUBLIC_AFFILIATE_SIGNUP_URL || "#";
+// 応募先: onebuzz 公式 LINE(src/lib/links.ts で一元管理)
+const SIGNUP_URL = LINE_OFFICIAL_URL;
 
 export default async function AffiliatePage({
   params,
@@ -41,51 +42,51 @@ export default async function AffiliatePage({
   ];
 
   return (
-    <div className="mx-auto w-full max-w-3xl flex-1 px-5 py-8 sm:px-8 sm:py-12">
+    <div className="mx-auto w-full max-w-3xl flex-1 px-5 py-10 sm:px-8 sm:py-14">
       <Link
         href="/"
-        className="text-sm text-black/60 hover:text-foreground dark:text-white/60"
+        className="inline-flex items-center gap-1.5 text-sm text-muted transition hover:text-accent"
       >
         ← {t("back")}
       </Link>
 
-      <header className="mt-6 flex flex-col gap-3">
-        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
+      <header className="mt-8 flex flex-col gap-3">
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {t("title")}
         </h1>
-        <p className="text-base text-black/60 dark:text-white/60">
-          {t("subtitle")}
-        </p>
+        <p className="text-lg text-muted">{t("subtitle")}</p>
       </header>
 
-      <p className="mt-6 leading-relaxed text-black/70 dark:text-white/70">
-        {t("intro")}
-      </p>
+      <p className="mt-6 leading-relaxed text-muted">{t("intro")}</p>
 
-      <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        {points.map((p) => (
+      <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3">
+        {points.map((p, i) => (
           <li
             key={p.title}
-            className="rounded-2xl border border-black/10 bg-white p-5 dark:border-white/10 dark:bg-white/5"
+            style={{ boxShadow: "var(--shadow-card)" }}
+            className="rounded-[var(--radius)] border border-border bg-surface p-6"
           >
-            <h2 className="text-base font-semibold">{p.title}</h2>
-            <p className="mt-2 text-sm text-black/60 dark:text-white/60">
-              {p.body}
-            </p>
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--accent-soft)] text-sm font-bold text-accent-strong">
+              {i + 1}
+            </span>
+            <h2 className="mt-4 text-base font-semibold tracking-tight">
+              {p.title}
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{p.body}</p>
           </li>
         ))}
       </ul>
 
-      <div className="mt-10 flex flex-col items-start gap-3">
+      <div className="mt-12 flex flex-col items-start gap-3">
         <a
           href={SIGNUP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex w-fit items-center justify-center rounded-xl bg-foreground px-6 py-3 text-sm font-semibold text-background transition hover:opacity-90"
+          className="inline-flex w-fit items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-strong px-7 py-3.5 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
         >
           {t("cta")} →
         </a>
-        <p className="text-xs text-black/50 dark:text-white/50">{t("note")}</p>
+        <p className="text-xs text-muted">{t("note")}</p>
       </div>
     </div>
   );

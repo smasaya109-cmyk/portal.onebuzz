@@ -55,17 +55,20 @@ export default async function AppDetailPage({
   const description = localizedDescription(app, locale);
 
   return (
-    <div className="mx-auto w-full max-w-3xl flex-1 px-5 py-8 sm:px-8 sm:py-12">
+    <div className="mx-auto w-full max-w-3xl flex-1 px-5 py-10 sm:px-8 sm:py-14">
       <Link
         href="/"
-        className="text-sm text-black/60 hover:text-foreground dark:text-white/60"
+        className="inline-flex items-center gap-1.5 text-sm text-muted transition hover:text-accent"
       >
         ← {t("back")}
       </Link>
 
-      <article className="mt-6 flex flex-col gap-6">
+      <article className="mt-8 flex flex-col gap-6">
         {app.image_url && (
-          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-black/5 dark:bg-white/5">
+          <div
+            style={{ boxShadow: "var(--shadow-card)" }}
+            className="relative aspect-[16/9] w-full overflow-hidden rounded-[var(--radius)] border border-border bg-surface"
+          >
             <Image
               src={app.image_url}
               alt={name}
@@ -79,13 +82,13 @@ export default async function AppDetailPage({
 
         <div className="flex flex-col gap-3">
           {app.category && (
-            <span className="text-xs font-medium uppercase tracking-wide text-black/50 dark:text-white/50">
+            <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               {localizedName(app.category, locale)}
             </span>
           )}
-          <h1 className="text-2xl font-bold sm:text-3xl">{name}</h1>
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{name}</h1>
           {description && (
-            <p className="whitespace-pre-line text-black/70 dark:text-white/70">
+            <p className="whitespace-pre-line leading-relaxed text-muted">
               {description}
             </p>
           )}
@@ -96,7 +99,7 @@ export default async function AppDetailPage({
             {app.tags.map((tag) => (
               <span
                 key={tag.id}
-                className="rounded-full bg-black/5 px-3 py-1 text-xs text-black/60 dark:bg-white/10 dark:text-white/60"
+                className="rounded-full border border-border bg-surface px-3 py-1 text-xs text-muted"
               >
                 {localizedName(tag, locale)}
               </span>
@@ -108,7 +111,7 @@ export default async function AppDetailPage({
           href={app.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex w-fit items-center justify-center rounded-xl bg-foreground px-6 py-3 text-sm font-semibold text-background transition hover:opacity-90"
+          className="inline-flex w-fit items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-strong px-7 py-3.5 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
         >
           {t("visit")} →
         </a>
