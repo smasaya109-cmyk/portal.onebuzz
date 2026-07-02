@@ -9,4 +9,4 @@ export const LINE_OFFICIAL_URL = "https://lin.ee/wPKhL6S";
  * ここへは target="_blank" や LINE を挟まず、同一タブの通常 <a> 遷移で誘導する。
  * クエリパラメータの付与も不要。
  */
-export const PARTNER_REGISTER_URL = "https://www.onebuzz.net/register";
+export const PARTNER_REGISTER_URL = "https://www.onebuzz.net/start";
