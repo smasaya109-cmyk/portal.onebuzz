@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { LINE_OFFICIAL_URL } from "@/lib/links";
+import { LINE_OFFICIAL_URL, PARTNER_REGISTER_URL } from "@/lib/links";
 
 /** LINE 公式アカウントのアイコン(吹き出し) */
 function LineIcon({ className }: { className?: string }) {
@@ -42,18 +42,24 @@ export async function AffiliateCTA() {
               </p>
             </div>
 
-            {/* CTA */}
-            <div className="shrink-0 text-center sm:text-right">
+            {/* CTA: パートナー登録(プライマリ・帰属維持のため同一タブ遷移) / LINE相談(セカンダリ) */}
+            <div className="flex shrink-0 flex-col items-center gap-2.5 sm:items-end">
+              <a
+                href={PARTNER_REGISTER_URL}
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-strong px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
+              >
+                {t("registerCta")} →
+              </a>
               <a
                 href={LINE_OFFICIAL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#06C755] px-6 py-3 text-sm font-bold text-white shadow-md shadow-[#06C755]/25 transition hover:-translate-y-0.5 hover:bg-[#05b84e] hover:shadow-lg"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-surface px-6 py-3 text-sm font-semibold text-muted transition hover:-translate-y-0.5 hover:text-accent"
               >
-                <LineIcon className="h-4 w-4" />
+                <LineIcon className="h-4 w-4 text-[#06C755]" />
                 {t("cta")}
               </a>
-              <p className="mx-auto mt-2 max-w-[18rem] whitespace-pre-line text-xs leading-relaxed text-muted sm:mx-0 sm:max-w-[16rem]">
+              <p className="mx-auto max-w-[18rem] whitespace-pre-line text-center text-xs leading-relaxed text-muted sm:mx-0 sm:max-w-[16rem] sm:text-right">
                 {t("note")}
               </p>
             </div>

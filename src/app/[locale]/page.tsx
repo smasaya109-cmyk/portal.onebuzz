@@ -3,6 +3,7 @@ import { getApps, getCategories } from "@/lib/apps";
 import { AppsBrowser } from "@/components/AppsBrowser";
 import { AppCard } from "@/components/AppCard";
 import { AffiliateCTA } from "@/components/AffiliateCTA";
+import { LINE_OFFICIAL_URL, PARTNER_REGISTER_URL } from "@/lib/links";
 import type { Locale } from "@/types/db";
 
 // ISR: 5分ごとに再生成(Supabase の更新を反映)
@@ -20,6 +21,7 @@ export default async function HomePage({
   const [apps, categories] = await Promise.all([getApps(), getCategories()]);
   const featured = apps.filter((a) => a.is_featured);
   const t = await getTranslations("home");
+  const ta = await getTranslations("affiliate");
 
   return (
     <main className="flex-1">
@@ -36,6 +38,24 @@ export default async function HomePage({
           <p className="mt-5 max-w-xl text-base text-muted sm:text-lg">
             {t("heroSubtitle")}
           </p>
+
+          {/* 第1CTA: パートナー登録(帰属維持のため同一タブ遷移) / 第2CTA: LINE相談 */}
+          <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+            <a
+              href={PARTNER_REGISTER_URL}
+              className="inline-flex items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-strong px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              {ta("registerCta")} →
+            </a>
+            <a
+              href={LINE_OFFICIAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full border border-border bg-surface/60 px-6 py-3 text-sm font-semibold text-muted backdrop-blur transition hover:-translate-y-0.5 hover:text-accent"
+            >
+              {ta("cta")}
+            </a>
+          </div>
         </div>
       </section>
 

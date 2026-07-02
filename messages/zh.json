@@ -30,9 +30,10 @@
     "point2Title": "易于推广",
     "point2Body": "拥有面向广泛受众的免费应用阵容。",
     "point3Title": "即刻开始",
-    "point3Body": "只需添加官方LINE好友,即可立即获取专属链接。",
-    "cta": "通过官方LINE申请",
-    "note": "申请与咨询均通过 onebuzz 官方LINE受理。",
+    "point3Body": "只需完成免费注册,即可立即获取专属链接。",
+    "registerCta": "免费注册合作伙伴(1分钟·0元)",
+    "cta": "通过官方LINE咨询",
+    "note": "注册前的咨询与疑问可通过 onebuzz 官方LINE受理。",
     "back": "返回首页"
   },
   "footer": {
