@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { LINE_OFFICIAL_URL } from "@/lib/links";
+import { LINE_OFFICIAL_URL, PARTNER_REGISTER_URL } from "@/lib/links";
 
 // 静的な案内ページ(データ取得なし)
 export function generateStaticParams() {
@@ -22,9 +22,6 @@ export async function generateMetadata({
     openGraph: { title: t("title"), description: t("subtitle") },
   };
 }
-
-// 応募先: onebuzz 公式 LINE(src/lib/links.ts で一元管理)
-const SIGNUP_URL = LINE_OFFICIAL_URL;
 
 export default async function AffiliatePage({
   params,
@@ -77,16 +74,25 @@ export default async function AffiliatePage({
         ))}
       </ul>
 
+      {/* パートナー登録(プライマリ・帰属維持のため同一タブ遷移) / LINE相談(セカンダリ) */}
       <div className="mt-12 flex flex-col items-start gap-3">
-        <a
-          href={SIGNUP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex w-fit items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-strong px-7 py-3.5 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
-        >
-          {t("cta")} →
-        </a>
-        <p className="text-xs text-muted">{t("note")}</p>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a
+            href={PARTNER_REGISTER_URL}
+            className="inline-flex w-fit items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-strong px-7 py-3.5 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
+          >
+            {t("registerCta")} →
+          </a>
+          <a
+            href={LINE_OFFICIAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex w-fit items-center justify-center rounded-full border border-border bg-surface px-6 py-3 text-sm font-semibold text-muted transition hover:-translate-y-0.5 hover:text-accent"
+          >
+            {t("cta")}
+          </a>
+        </div>
+        <p className="whitespace-pre-line text-xs text-muted">{t("note")}</p>
       </div>
     </div>
   );
